@@ -2,8 +2,9 @@ module Main where
 
 import qualified Data.Map as Map
 import System.Environment (getArgs)
+import qualified Day01 (solve)
 
-solutions = Map.fromList []
+solutions = Map.fromList [("01", Day01.solve)]
 
 main :: IO ()
 main = do
