@@ -3,8 +3,9 @@ module Main where
 import qualified Data.Map as Map
 import System.Environment (getArgs)
 import qualified Day01 (solve)
+import qualified Day02 (solve)
 
-solutions = Map.fromList [("01", Day01.solve)]
+solutions = Map.fromList [("01", Day01.solve), ("02", Day02.solve)]
 
 main :: IO ()
 main = do
