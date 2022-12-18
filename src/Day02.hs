@@ -1,9 +1,10 @@
 {-# LANGUAGE FlexibleInstances #-}
 
 module Day02 (solve) where
-import Data.List.Split (splitOn)
-import Data.Bifunctor (Bifunctor(bimap))
+
+import Data.Bifunctor (Bifunctor (bimap))
 import Data.Foldable (find)
+import Data.List.Split (splitOn)
 import Data.Maybe (fromJust)
 
 data Choice = Rock | Paper | Scissors deriving (Eq, Enum)
@@ -23,12 +24,12 @@ choiceValue c = case c of
 newtype Game = Game (Choice, Choice)
 
 gameValue :: Game -> Int
-gameValue (Game (a, b)) = 
-    choiceValue b + 
-    case compare a b of
-        LT -> 6
-        EQ -> 3
-        GT -> 0
+gameValue (Game (a, b)) =
+    choiceValue b
+        + case compare a b of
+            LT -> 6
+            EQ -> 3
+            GT -> 0
 
 tuplify2 [x] = (x, x)
 tuplify2 [x, y] = (x, y)
@@ -40,11 +41,10 @@ stringToChoice s
     | s `elem` ["C", "Z"] = Scissors
 
 part1 :: [[String]] -> String
-part1 gamesData = 
+part1 gamesData =
     let games :: [Game]
         games = map (Game . tuplify2 . map stringToChoice) gamesData
-    in
-        show $ sum $ map gameValue games
+     in show $ sum $ map gameValue games
 
 data Result = Lose | Draw | Win
 
@@ -56,18 +56,18 @@ stringToResult "Z" = Win
 infoToGame :: (Choice, Result) -> Game
 infoToGame (x, Draw) = Game (x, x)
 infoToGame (x, result) = Game (x, y)
-    where
-        f = case result of
-            Win  -> (> x)
-            Lose -> (< x)
-        y = fromJust $ find f [Rock .. Scissors]
+  where
+    f = case result of
+        Win -> (> x)
+        Lose -> (< x)
+    y = fromJust $ find f [Rock .. Scissors]
 
 part2 :: [[String]] -> String
-part2 gamesData = 
+part2 gamesData =
     let info :: [(Choice, Result)]
         info = map (bimap stringToChoice stringToResult . tuplify2) gamesData
         games = map infoToGame info
-    in show $ sum $ map gameValue games
+     in show $ sum $ map gameValue games
 
 solve :: String -> IO ()
 solve input = do

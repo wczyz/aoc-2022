@@ -1,7 +1,7 @@
 module Day01 (solve) where
 
-import Data.List.Split (splitOn)
 import Data.List (sort)
+import Data.List.Split (splitOn)
 
 newtype Elf = Elf [Int]
 
@@ -9,15 +9,15 @@ elfSum :: Elf -> Int
 elfSum (Elf xs) = sum xs
 
 part1 :: [Elf] -> String
-part1 elfs = 
+part1 elfs =
     let maxSum = maximum $ map elfSum elfs
-    in show maxSum
+     in show maxSum
 
 part2 :: [Elf] -> String
-part2 elfs = 
+part2 elfs =
     let sortedSums = reverse . sort $ map elfSum elfs
         value = sum (take 3 sortedSums)
-    in show value
+     in show value
 
 solve :: String -> IO ()
 solve input = do
