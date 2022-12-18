@@ -9,6 +9,7 @@ import qualified Day03 (solve)
 import qualified Day04 (solve)
 import qualified Day05 (solve)
 import qualified Day06 (solve)
+import qualified Day07 (solve)
 
 solutions = Map.fromList 
     [("01", Day01.solve), 
@@ -16,7 +17,8 @@ solutions = Map.fromList
      ("03", Day03.solve),
      ("04", Day04.solve),
      ("05", Day05.solve),
-     ("06", Day06.solve)]
+     ("06", Day06.solve),
+     ("07", Day07.solve)]
 
 main :: IO ()
 main = do

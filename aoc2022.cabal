@@ -28,6 +28,7 @@ library
         Day04
         Day05
         Day06
+        Day07
 
     build-depends:
         base ^>=4.16.3.0
